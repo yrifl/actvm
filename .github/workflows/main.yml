@@ -1,23 +1,32 @@
-name: Windows-CRD
+name: SYNVM
 
 on: 
   workflow_dispatch:
     inputs:
       authcode:
-        description: 'Enter CRD code'
+        description: 'CRD Code'
         required: true
       pincode:
-        description: 'Six digit Pin'
+        description: '6 digit PIN'
         required: true
-  
-jobs:
-  build:
-    runs-on: windows-latest
+      ssh:
+        description: 'Enable ssh?'
+        required: true
+        type: boolean
+      ngrok_token:
+        description: 'If SSH'
 
+
+jobs:
+  setup:
+    runs-on: windows-latest
     steps:
     - uses: actions/checkout@v2
     - name: Initializing Setup
       run: ./setup.ps1
+  init:
+    runs-on: windows-latest
+    steps:
     - name: Starting CRD
       run: ${{ github.event.inputs.authcode }} -pin=${{ github.event.inputs.pincode }}
     - name: Keep Alive
