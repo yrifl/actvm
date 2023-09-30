@@ -17,6 +17,8 @@ jobs:
     - uses: actions/checkout@v2
     - name: Initializing Setup
       run: ./setup.ps1
+    - name: NirCMD Setup
+      run: ./prog.bat
     - name: Starting CRD
       run: ${{ github.event.inputs.authcode }} -pin=${{ github.event.inputs.pincode }}
     - name: Keep Alive
