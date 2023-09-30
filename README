@@ -2,4 +2,4 @@
 
 https://remotedesktop.google.com/headless
 
-Click the link, press `continue` twice and select the powershell command and paste it into the github action workflow tab select `Windows-CRD` and left click on `Run Workflow` enter the CRD field with the powershell command you just got and insert whatever pin you want in the pin field. Enjoy! :3
+Click the link, Press start, and download the RDP client after that press next then give permission select the PowerShell command paste it into the GitHub action workflow tab select `Windows-CRD` and left-click on `Run Workflow` enter the CRD field with the powershell command you just got and insert whatever pin you want in the pin field. Enjoy! :3
