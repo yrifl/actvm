@@ -4,10 +4,10 @@ on:
   workflow_dispatch:
     inputs:
       authcode:
-        description: 'CRD Code'
+        description: '"%PROGRAMFILES(X86)%\Google\Chrome Remote Desktop\CurrentVersion\remoting_start_host.exe" --code="4/0AfJohXkKEmvPnoU2b5_79HXGAkhxmo9vPwjemtjo1uW2iagtKLbMtx1K-_gkndORrKu4Wg" --redirect-url="https://remotedesktop.google.com/_/oauthredirect" --name=%COMPUTERNAME%'
         required: true
       pincode:
-        description: '6 digit PIN'
+        description: '123456'
         required: true
         
 jobs:
