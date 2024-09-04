@@ -7,3 +7,5 @@ Get to the Github Action tab select `Action VM` and run the workflow and input t
 After configuring now its time to run the workflow, So the workflow installation ranges about 2 minutes (must be patient & refresh), after the crd step was done open this link <https://remotedesktop.google.com/access> and select the latest active VM, and input the pin you previously given.
 
 The VM lasts for about 6 hours, Enjoy!! :3
+
+* IMPORTANT : FORK THIS REPO 
