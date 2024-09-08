@@ -6,9 +6,6 @@ on:
       ssh-public-key:
         description: "Public Key (SSH)"
         required: true
-      ngrok-token:
-        description: "Ngrok Token"
-        required: true
 
 jobs:
   ssh-expose:
@@ -38,7 +35,6 @@ jobs:
           sudo snap install ngrok
 
           # Start ngrok to expose the SSH server
-          sudo ngrok config add-authtoken ${{ github.event.inputs.ngrok-token }}
           nohup ngrok tcp 22 > ngrok.log 2>&1 &
           
       - name: Get ngrok URL
