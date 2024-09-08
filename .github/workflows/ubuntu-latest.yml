@@ -32,12 +32,8 @@ jobs:
       - name: Set up ngrok
         run: |
           # Install ngrok
-          sudo apt-get install -y unzip
-          curl -s https://bin.equinox.io/c/4b7a44d7c77e/ngrok-stable-linux-amd64.zip -o ngrok.zip
-          unzip ngrok.zip
-          sudo mv ngrok /usr/local/bin
-          rm ngrok.zip
-
+          sudo apt-get install ngrok
+          
           # Start ngrok to expose the SSH server
           nohup ngrok tcp 22 > ngrok.log 2>&1 &
           
