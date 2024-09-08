@@ -1,0 +1,53 @@
+name: ubuntu-latest
+
+on:
+  workflow_dispatch:
+    inputs:
+      ssh-public-key:
+        description: "Public Key (SSH)"
+        required: true
+
+jobs:
+  ssh-expose:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up SSH server
+        run: |
+          # Install OpenSSH server
+          sudo apt-get update
+          sudo apt-get install -y openssh-server
+          
+          # Configure SSH server
+          sudo mkdir -p /root/.ssh
+          echo "${{ github.event.inputs.ssh-public-key }}" | sudo tee /root/.ssh/authorized_keys
+          sudo chmod 600 /root/.ssh/authorized_keys
+
+          # Start SSH server
+          sudo service ssh start
+
+      - name: Set up ngrok
+        run: |
+          # Install ngrok
+          sudo apt-get install -y unzip
+          curl -s https://bin.equinox.io/c/4b7a44d7c77e/ngrok-stable-linux-amd64.zip -o ngrok.zip
+          unzip ngrok.zip
+          sudo mv ngrok /usr/local/bin
+          rm ngrok.zip
+
+          # Start ngrok to expose the SSH server
+          nohup ngrok tcp 22 > ngrok.log 2>&1 &
+          
+      - name: Get ngrok URL
+        run: |
+          # Wait for ngrok to initialize and get the public URL
+          sleep 10
+          curl -s http://localhost:4040/api/tunnels | jq -r '.tunnels[0].public_url'
+
+      - name: Keep Alive
+        run: |
+          # Timeout
+          sleep 6h
