@@ -41,8 +41,10 @@ jobs:
         run: |
           # Wait for ngrok to initialize and get the public URL
           sleep 10
-          curl -s http://localhost:4040/api/tunnels | jq -r '.tunnels[0].public_url'
-
+          ngrok_url=$(curl -s http://localhost:4040/api/tunnels | jq -r '.tunnels[0].public_url')
+          echo "ngrok URL: $ngrok_url"
+          echo "::set-output name=ngrok_url::$ngrok_url"
+      
       - name: Keep Alive
         run: |
           # Timeout
